@@ -1,0 +1,51 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<link href="https://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<script src="https://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/justified-nav.css' %}" />
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/style.css' %}" />
+
+
+
+<title> 登录 </title>
+
+
+{% block bootstrap3_content %}
+
+    <div class="container">
+        <!-- The justified navigation menu is meant for single line per list item.
+             Multiple lines will require custom code not provided by Bootstrap. -->
+        <form class="form-signin" method="post">{% csrf_token %}
+            <h2 class="form-signin-heading">请先登录</h2>
+            <label class="sr-only">用户名</label>
+            <input class="form-control" placeholder="用户名" name="username" required autofocus>
+            <label for="inputPassword" class="sr-only">密码</label>
+            <input type="password" id="inputPassword" class="form-control" name="pwd" placeholder="密码" required>
+            <div class="checkbox">
+{#                <label>#}
+{#                    <input type="checkbox" value="remember-me"> Remember me#}
+{#                </label>#}
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        </form>
+
+
+        <!-- Site footer -->
+{#        <footer class="footer" id="footer">#}
+{#            <p>&copy; 2016 LeoTao, Inc.</p>#}
+{#        </footer>#}
+
+    </div> <!-- /container -->
+
+{% endblock %}

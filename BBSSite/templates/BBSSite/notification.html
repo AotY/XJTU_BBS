@@ -1,0 +1,49 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<link href="https://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<script src="https://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/justified-nav.css' %}"/>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/style.css' %}"/>
+
+
+
+
+
+<script>
+
+
+
+function goBack() {
+    window.history.back();
+}
+
+
+</script>
+
+
+{% block bootstrap3_content %}
+
+    <div class="container">
+       <div class="jumbotron">
+          <h1>{{ notification }}</h1>
+          <p>  </p>
+          <p><a class="btn btn-primary btn-lg" role="button" onclick="goBack()">返回</a></p>
+        </div>
+    </div> <!-- /container -->
+
+{% endblock %}

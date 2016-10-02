@@ -1,0 +1,61 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+<link href="https://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<script src="https://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/justified-nav.css' %}"/>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/style.css' %}"/>
+
+<style>
+    .list-group {
+        margin-top: 20px;
+    }
+</style>
+
+
+<title> 今日十大热门话题 </title>
+
+
+{% block bootstrap3_content %}
+
+    <div class="container">
+    <!-- The justified navigation menu is meant for single line per list item.
+         Multiple lines will require custom code not provided by Bootstrap. -->
+    <div class="masthead">
+        <h3 class="text-muted">兵马俑BBS</h3>
+        <nav>
+            <ul class="nav nav-justified">
+                <li class="active"><a href="{% url 'top_ten' %}">今日十大热门话题</a></li>
+                <li role="presentation"><a href="{% url 'to_post' %}">我要发帖</a></li>
+                <li role="presentation"><a href="{% url 'stick_post' %}">我要顶贴</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="list-group">
+        {% for hot in hots %}
+            <a href={{ hot.title_url }} class="list-group-item">
+                <span class="badge"> 热度: {{ hot.people_num }} </span>
+                {{ hot.title }}
+            </a>
+        {% endfor %}
+        <!-- Site footer -->
+{#        <footer class="footer" id="footer">#}
+{#            <p>&copy; 2016 LeoTao, Inc.</p>#}
+{#        </footer>#}
+
+    </div> <!-- /container -->
+
+{% endblock %}

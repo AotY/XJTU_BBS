@@ -1,0 +1,117 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+
+<link href="https://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<script src="https://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+
+<script>
+
+jQuery(document).on('click', ".list-group-item", function () {
+    var $this = $(this);
+    var category = $this.text();
+
+    $.get("BBSSite/top_ten.html", {'category': category});
+    {#        $this.get(url);#}
+    {#        alert(category);#}
+
+});
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+jQuery(document).on('click', ".list-group-item", function(){
+    var $this = $(this);
+    var url = $this.attr('id').split('-')[1]
+    var category = $this.text()
+{#    $this.notify("Hello World");#}
+{#    document.getElementById("demo").innerHTML = index#}
+{#    var params = {"url": url}#}
+    post("/post/", {"category": category}, "post")
+
+});
+
+{#document.getElementById("demo").innerHTML = index#}
+
+</script>
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/justified-nav.css' %}"/>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/style.css' %}"/>
+
+<style>
+    .list-group {
+        margin-top: 5px;
+    }
+</style>
+
+
+<title> 我要发帖 </title>
+
+
+{% block bootstrap3_content %}
+    <div class="container">
+        <!-- The justified navigation menu is meant for single line per list item.
+             Multiple lines will require custom code not provided by Bootstrap. -->
+        <div class="masthead">
+            <h3 class="text-muted">兵马俑BBS</h3>
+            <nav>
+                <ul class="nav nav-justified">
+                    <li role="presentation"><a href="{% url 'top_ten' %}">今日十大热门话题</a></li>
+                    <li class="active"><a href="{% url 'to_post' %}">我要发帖</a></li>
+                    <li role="presentation"><a href="{% url 'stick_post' %}">我要顶贴</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="panel panel-heading">
+            {#          <div class="panel-body">#}
+            选择发帖类别
+            {#          </div>#}
+        </div>
+        <div class="list-group">
+            {% for category in categories %}
+                <button type="button" class="list-group-item" id="id-{{ category.url }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+
+{#        <!-- Site footer -->#}
+{#        <footer class="footer" id="footer">#}
+{#            <p>&copy; 2016 LeoTao, Inc.</p>#}
+{#        </footer>#}
+
+    </div> <!-- /container -->
+
+{% endblock %}

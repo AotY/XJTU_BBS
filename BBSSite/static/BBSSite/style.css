@@ -1,0 +1,73 @@
+
+
+
+.input-group {
+  margin-top: 50px;
+
+  /*padding: 5px;*/
+  /*margin: 20px;*/
+}
+
+.form-control {
+  padding-top: 27px;
+  padding-bottom: 27px;
+  /*margin-left: 20px;*/
+}
+
+#btn-input-group{
+ /* padding-top: 25px;
+  padding-bottom: 25px;
+  padding-bottom: 20px;*/
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#rule-panel-default
+{
+ /* padding-top: 25px;
+  padding-bottom: 25px;*/
+  margin-top: 50px;
+
+}
+
+#btn-group-left
+{
+ position:relative;
+ left:20px;
+}
+
+#user-jumbotron{
+  margin-top: 80px;
+}
+
+#user-login-btn{
+  margin-right: 20px;
+}
+
+#stick_btn {
+  float: right;
+  /*padding-bottom: 7px;*/
+  /*padding-top: 3px;*/
+  /*margin-bottom: 1px;*/
+  /*margin-top: 3px;*/
+  /*display: inline-block;*/
+  /*min-width: 10px;*/
+  padding: 3px 7px;
+  font-size: 15px;
+  /*font-weight: bold;*/
+  color: #fff;
+  /*line-height: 1;*/
+  /*vertical-align: middle;*/
+  /*white-space: nowrap;*/
+  /*text-align: center;*/
+  background-color: #777777;
+  /*border-radius: 10px;*/
+}
+.panel-body{
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+  font-weight: bold;
+  background-color: #ffffff;
+}

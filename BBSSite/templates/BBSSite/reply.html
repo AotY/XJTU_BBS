@@ -1,0 +1,80 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+
+<link href="https://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<script src="https://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/justified-nav.css' %}"/>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'BBSSite/style.css' %}"/>
+
+<style>
+    .list-group {
+        margin-top: 5px;
+    }
+    .form-signin{
+        padding-top: 20px;
+    }
+
+    #submit-btn{
+        padding-top: 10px;
+        margin-top:20px;
+    }
+
+</style>
+
+<script>
+
+jQuery(document).on('click', ".badge", function(){
+    var $this = $(this);
+{#    document.getElementById("reply").innerHTML = "reply";#}
+    var reply = $this.attr('id').split('-')[1]
+{#    reply_text = document.getElementById("reply-text").textContent;#}
+    document.getElementById("reply").value = reply;
+{#    alert("reply");#}
+});
+
+
+
+
+</script>
+
+
+<title> 我要顶贴 </title>
+
+
+{% block bootstrap3_content %}
+
+    <div class="container">
+        <form class="form-signin" method="post" >{% csrf_token %}
+            <div class="form-group">
+                <label for="title">输入回复内容:</label>
+                <input  type="text" class="form-control" name="reply-content"  id="reply" value={{ title }}>
+            </div>
+            <div class="badge-container">
+{#               <a class="badge-btn" onclick="" ><span class="badge"> 顶顶顶 </span></a>#}
+                {% for reply in replies %}
+                    <a class="badge" id="id-{{ reply }}" > {{ reply }}</a>
+                {% endfor %}
+            </div>
+            <button  class="btn btn-lg btn-primary btn-block" id="submit-btn" type="submit">顶贴</button>
+        </form>
+{#        <h3 id="notification"> {{ notification }} </h3>#}
+
+
+    </div> <!-- /container -->
+
+{% endblock %}
